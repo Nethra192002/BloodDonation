@@ -1,0 +1,64 @@
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<nav class="navbar">
+    <a routerLink="/welcome">Home</a>
+    <a routerLink="/blood-bank-info">Blood Banks</a>
+    <a routerLink="/find-donor">Find a Donor</a>
+    <a routerLink="/donor-info">List of Recipient</a>
+    <a routerLink="/register-donor">Register Yourself</a>
+    <a routerLink="/donation-info">Blood Donated</a>
+</nav>
+  
+  <div class="banner-image">
+    <img src="assets/images/banner1.jpg" alt="Banner">
+  </div>
+
+  <div class="welcome-message">
+    <p>Our Registered Donor</p>
+  </div>
+<div class="filter-section">
+    <h3>Find A donor By Blood Group</h3>
+    <input class="filter-input" type="text" [(ngModel)]="filterBloodGroup" placeholder="Enter blood group">
+    <button class="filter-button" (click)="fetchFilteredDonors()">Filter</button>
+    <button class="filter-button" (click)="clearFilters()">Clear Filters</button>
+  </div>
+  
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Blood Group</th>
+          <th>Email</th>
+          <th>Blood Bank ID</th>
+          <th>Pincode</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let donor of donors">
+          <td>{{ donor.donor_id }}</td>
+          <td>{{ donor.name }}</td>
+          <td>{{ donor.age }}</td>
+          <td>{{ donor.gender }}</td>
+          <td>{{ donor.bloodgroup }}</td>
+          <td>{{ donor.email }}</td>
+          <td>{{ donor.bbank_id }}</td>
+          <td>{{ donor.pincode }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
+  <footer class="page-footer">
+    <div class="footer-content">
+      <p>Thank you for visiting!</p>
+      <p>Contact us at:<br>Email <a href="mailto:contact@example.com">contact@example.com</a></p>
+      <p>Phone: 9988998898</p>
+    </div>
+  </footer>
+  <router-outlet></router-outlet>

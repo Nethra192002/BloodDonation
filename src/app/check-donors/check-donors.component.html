@@ -1,0 +1,73 @@
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<nav class="navbar">
+    <a routerLink="/admin-welcome">Home</a>
+    <a routerLink="/blood-banks">Blood Banks</a>
+    <a routerLink="/check-donor">Check Donors</a>
+    <a routerLink="/list-recipients">List of Recipients</a>
+    <a routerLink="/add-conditions">Add Conditions</a>
+    <a routerLink="/blood-donated">Blood Donated</a>
+  </nav>
+  <div class="banner-image">
+
+    <img src="assets/images/banner1.jpg" alt="Banner">
+  </div>
+
+  <div class="welcome-message">
+    <p>Manage Donors</p>
+  </div>
+
+  <div class="filter-section">
+    <h3>Find A donor By Blood Group</h3>
+    <input class="filter-input" type="text" [(ngModel)]="filterBloodGroup" placeholder="Enter blood group">
+    <button class="filter-button" (click)="fetchFilteredDonors()">Filter</button>
+    <button class="filter-button" (click)="clearFilters()">Clear Filters</button>
+  </div>
+  <div class="min-height-container">
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Blood Group</th>
+          <th>Email</th>
+          <th>Blood Bank ID</th>
+          <th>Pincode</th>
+          <th>Deletion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let donor of donors">
+          <td>{{ donor.donor_id }}</td>
+          <td>{{ donor.name }}</td>
+          <td>{{ donor.age }}</td>
+          <td>{{ donor.gender }}</td>
+          <td>{{ donor.bloodgroup }}</td>
+          <td>{{ donor.email }}</td>
+          <td>{{ donor.bbank_id }}</td>
+          <td>{{ donor.pincode }}</td>
+          <td style="width: 90px;"><button class="del-button" (click)="deleteDonor(donor.donor_id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+
+
+  <footer class="page-footer">
+    <div class="footer-content">
+      <p>Thank you for visiting!</p>
+      <p>Contact us at:<br>Email <a href="mailto:contact@example.com">contact@example.com</a></p>
+      <p>Phone: 9988998898</p>
+    </div>
+  </footer>
+  <router-outlet></router-outlet>

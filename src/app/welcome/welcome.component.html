@@ -1,0 +1,141 @@
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<nav class="navbar">
+  <a routerLink="/welcome">Home</a>
+  <a routerLink="/blood-bank-info">Blood Banks</a>
+  <a routerLink="/find-donor">Find a Donor</a>
+  <a routerLink="/donor-info">List of Recipient</a>
+  <a routerLink="/register-donor">Register Yourself</a>
+  <a routerLink="/donation-info">Blood Donated</a>
+  <div style="position: absolute;" class="profile-logo" (click)="toggleProfileCard()">👤</div>
+</nav>
+<div class="profile-card" *ngIf="showProfileCard">
+  <p>Name: {{ userProfile.name }}</p>
+  <p>Email: {{ userProfile.email }}</p>
+  <button (click)="logout()">Logout</button>
+</div>
+<div class="banner-image">
+  <!-- Placeholder for banner image -->
+  <img src="assets/images/banner1.jpg" alt="Banner">
+</div>
+
+<div class="welcome-message">
+  <p>“With every heart beat we live to see the sunset,<br>with each drop of blood donated;<br> another precious life will live to see the sunrise.”<br>
+    ― Wayne Chirisa</p>
+</div>
+
+<div class="dashboard-container">
+  <div class="dashboard-item">
+    <div class="dashboard-content">
+      <h3><b>Blood Banks</b></h3>
+      <p>{{ bloodBankCount }}</p>
+    </div>
+  </div>
+  <div class="dashboard-item">
+    <div class="dashboard-content">
+      <h3><b>Donors</b></h3>
+      <p>{{ donorCount }}</p>
+    </div>
+  </div>
+  <div class="dashboard-item">
+    <div class="dashboard-content">
+      <h3><b>Patients</b></h3>
+      <p>{{ patientsCount }}</p>
+    </div>
+  </div>
+  <div class="dashboard-item">
+    <div class="dashboard-content">
+      <h3><b>Total Blood Donated in Litre</b></h3>
+      <p>{{ totalBloodDonated/1000 }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="picture-row">
+  <div class="image-container">
+    <img src="assets/images/pic1.jpg" alt="Blood Donation Image 1">
+    <div class="overlay-text">Donate blood responsibly, not on roads but at blood donation camps.</div>
+  </div>
+  <div class="image-container">
+    <img src="assets/images/pic2.jpg" alt="Blood Donation Image 2">
+    <div class="overlay-text">A single drop of your blood could be a drop of life for someone else.</div>
+  </div>
+  <div class="image-container">
+    <img src="assets/images/pic3.jpg" alt="Blood Donation Image 3">
+    <div class="overlay-text">Most healthy adults can donate a pint (about half a liter) safely, without health risks</div>
+  </div>
+  <div class="image-container">
+    <img src="assets/images/pic4.jpg" alt="Blood Donation Image 4">
+    <div class="overlay-text">World Blood Donor Day<br>14 June</div>
+  </div>
+</div>
+
+<div class="tips-container">
+  <div class="column before-tips" style="width: 600px; color: rgb(205, 0, 0)
+  ;">
+    <h3>Before Blood Donation</h3>
+    <div class="tip">
+      <span class="icon">💡</span>
+      <p>Get enough sleep the night before you donate to wake up well-rested and energised.</p>
+    </div>
+    <div class="tip">
+      <span class="icon">💡</span>
+      <p>Eat a well-balanced and healthy meal before blood donation. Avoid eating fatty foods like fries, ice cream, and hamburgers.</p>
+    </div>
+    <div class="tip">
+      <span class="icon">💡</span>
+      <p>Drink an additional 16 ounces of water before blood donation as this will help prevent dizziness and fatigue from setting in.</p>
+    </div>
+    <div class="tip">
+      <span class="icon">💡</span>
+      <p>Make sure that any of the medications you are taking do not prevent you from donating blood.</p>
+    </div>
+    <div class="tip">
+      <span class="icon">💡</span>
+      <p>Wear a shirt or top with either half sleeves or full sleeves that can be rolled up for easy extraction of the blood.</p>
+    </div>
+   
+  </div>
+  
+  <div class="column after-tips" style="width: 600px; background-color:rgb(172, 0, 0); color: white;">
+    <h3 style="color: white;">After Blood Donation</h3>
+    
+    <div class="tip">
+      <span class="icon">🩹</span>
+      <p>If you feel lightheaded, lie down and keep your feet up.</p>
+    </div>
+    <div class="tip">
+      <span class="icon">🩹</span>
+      <p>Don't remove your bandage and keep it dry for five hours after donating.</p>
+    </div>
+    <div class="tip">
+      <span class="icon">🩹</span>
+      <p>If you experience bleeding once you remove the bandage, then keep your arm raised while putting pressure on the injection site until the bleeding stops. </p>
+    </div>
+    <div class="tip">
+      <span class="icon">🩹</span>
+      <p>Make sure to eat a sugary snack just after donation to avoid getting dizzy due to low glucose levels. Make sure to take an iron-rich diet to replace the lost iron. </p>
+    </div>
+    <div class="tip">
+      <span class="icon">🩹</span>
+      <p>Avoid engaging in intense physical activity or heavy lifting for around five hours after donating blood.</p>
+    </div>
+
+    
+  </div>
+</div>
+
+<footer class="page-footer">
+  <div class="footer-content">
+    <p>Thank you for visiting!</p>
+    <p>Contact us at:<br>Email <a href="mailto:contact@example.com">contact@example.com</a></p>
+    <p>Phone: 9988998898</p>
+  </div>
+</footer>
+
+
+<router-outlet></router-outlet>

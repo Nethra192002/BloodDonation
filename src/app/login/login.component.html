@@ -1,0 +1,38 @@
+<body>
+<div>
+  <div>
+    <h1 class="heading">Welcome to Blood Donation Portal</h1>
+  </div>
+  <div class="login-container">
+  
+    <form *ngIf="!isAdminLogin" (ngSubmit)="login()">
+      <h2>User Login</h2>
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="email" name="email" required>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" [(ngModel)]="password" name="password" required>
+      
+      <button type="submit">Login</button>
+      <p style="text-align: center;padding-top: 10px;;">Not a member? <a routerLink="/register">Register now</a></p>
+    </form>
+  
+    <button (click)="toggleAdminLogin()">Switch User</button>
+  
+      
+      <form *ngIf="isAdminLogin" (ngSubmit)="loginAdmin()">
+        <h2>Admin Login</h2>
+        <label for="adminEmail">Email:</label>
+        <input type="email" id="adminEmail" [(ngModel)]="adminEmail" name="adminEmail" required>
+        
+        <label for="adminPassword">Password:</label>
+        <input type="password" id="adminPassword" [(ngModel)]="adminPassword" name="adminPassword" required>
+        
+        <button type="submit">Login as Admin</button>
+      </form>
+  </div>
+</div>
+    
+  
+
+</body>

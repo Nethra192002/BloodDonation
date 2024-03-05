@@ -1,0 +1,80 @@
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<nav class="navbar">
+    <a routerLink="/admin-welcome">Home</a>
+    <a routerLink="/blood-banks">Blood Banks</a>
+    <a routerLink="/check-donor">Check Donors</a>
+    <a routerLink="/list-recipients">List of Recipients</a>
+    <a routerLink="/add-conditions">Add Conditions</a>
+    <a routerLink="/blood-donated">Blood Donated</a>
+  </nav>
+  <div class="banner-image">
+    <img src="assets/images/banner1.jpg" alt="Banner">
+  </div>
+  
+  <div class="welcome-message">
+    <p>Manage Donation info</p>
+  </div>
+
+  <div class="min-height-container">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Blood ID</th>
+            <th>Donor Name</th>
+            <th>Blood Bank ID</th>
+            <th>Blood Group</th>
+            <th>Amount Donated (ml)</th>
+            <th>Date Donated</th>
+            <th>Deletion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let donation of donations">
+            <td>{{ donation.blood_id }}</td>
+            <td>{{ donation.name }}</td>
+            <td>{{ donation.bbank_id }}</td>
+            <td>{{ donation.bloodgroup }}</td>
+            <td>{{ donation.amt_blood }}</td>
+            <td>{{ donation.date_donated | date }}</td>
+            <td style="width: 90px;">
+              <button class="del-button" (click)="deleteDonation(donation.blood_id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="add-donation-container">
+    <button class="add-button" (click)="toggleAddForm()">Add Details</button>
+  
+
+    <div [ngClass]="{'show': showAddForm}" class="add-donation-form">
+      <h3>Add a new Info</h3>
+      <input [(ngModel)]="newDonation.blood_id" placeholder="Blood ID" name="blood_id">
+      <input [(ngModel)]="newDonation.donor_id" placeholder="Donor ID" name="donor_id">
+      <input [(ngModel)]="newDonation.name" placeholder="Donor Name" name="name">
+      <input [(ngModel)]="newDonation.bbank_id" placeholder="Blood Bank ID" name="bbank_id">
+      <input [(ngModel)]="newDonation.bloodgroup" placeholder="Blood Group" name="bloodgroup">
+      <input type="number" [(ngModel)]="newDonation.amt_blood" placeholder="Amount of Blood" name="amt_blood">
+      <input type="date" [(ngModel)]="newDonation.date_donated" placeholder="Date Donated" name="date_donated">
+      <button class="add-button" (click)="addDonation()">Submit</button>
+    </div>
+    
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+
+    
+<footer class="page-footer">
+  <div class="footer-content">
+    <p>Thank you for visiting!</p>
+    <p>Contact us at:<br>Email <a href="mailto:contact@example.com">contact@example.com</a></p>
+    <p>Phone: 9988998898</p>
+  </div>
+</footer>
+<router-outlet></router-outlet>
+  

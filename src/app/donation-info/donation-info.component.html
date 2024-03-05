@@ -1,0 +1,56 @@
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<nav class="navbar">
+    <a routerLink="/welcome">Home</a>
+    <a routerLink="/blood-bank-info">Blood Banks</a>
+    <a routerLink="/find-donor">Find a Donor</a>
+    <a routerLink="/donor-info">List of Recipient</a>
+    <a routerLink="/register-donor">Register Yourself</a>
+    <a routerLink="/donation-info">Blood Donated</a>
+  </nav>
+  
+  <div class="banner-image">
+    <img src="assets/images/banner1.jpg" alt="Banner">
+  </div>
+
+  <div class="welcome-message">
+    <p>Total Blood Donated: {{ totalBloodDonated/1000 }} liters</p>
+  </div>
+  
+
+  <div class="min-height-container">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Blood ID</th>
+            <th>Donor Name</th>
+            <th>Blood Bank ID</th>
+            <th>Blood Group</th>
+            <th>Amount Donated</th>
+            <th>Date Donated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let donation of donations">
+            <td>{{ donation.blood_id }}</td>
+            <td>{{ donation.name }}</td>
+            <td>{{ donation.bbank_id }}</td>
+            <td>{{ donation.bloodgroup }}</td>
+            <td>{{ donation.amt_blood }}</td>
+            <td>{{ donation.date_donated | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+    
+  <footer class="page-footer">
+    <div class="footer-content">
+      <p>Thank you for visiting!</p>
+      <p>Contact us at:<br>Email <a href="mailto:contact@example.com">contact@example.com</a></p>
+      <p>Phone: 9988998898</p>
+    </div>
+  </footer>
+  <router-outlet></router-outlet>

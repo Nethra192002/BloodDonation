@@ -1,0 +1,53 @@
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<nav class="navbar">
+    <a routerLink="/admin-welcome">Home</a>
+    <a routerLink="/blood-banks">Blood Banks</a>
+    <a routerLink="/check-donor">Check Donors</a>
+    <a routerLink="/list-recipients">List of Recipients</a>
+    <a routerLink="/add-conditions">Add Conditions</a>
+    <a routerLink="/blood-donated">Blood Donated</a>
+  </nav>
+  <div class="banner-image">
+
+    <img src="assets/images/banner1.jpg" alt="Banner">
+  </div>
+  <div class="welcome-message">
+    <p>Manage Criteria for Donation</p>
+  </div>
+
+  <div class="condition-selection">
+    <label for="condition">Check existing conditions: </label>
+    <select id="condition">
+        <option value=""> Current conditions</option>
+        <ng-container *ngFor="let criteria of bloodDonationCriteria">
+        <option [value]="criteria.Conditions">{{ criteria.Conditions }}</option>
+        </ng-container>
+    </select>
+</div>  
+
+<div class="add-criteria-container">
+  <button class="add-button" (click)="toggleAddForm()">Add Condition</button>
+
+<div [ngClass]="{'show': showAddForm}" class="add-criteria-form">
+  <h3>Add a new Criteria</h3>
+  <input [(ngModel)]="newCriteria.condition" placeholder="Condition" name="condition">
+  <input [(ngModel)]="newCriteria.eligibility" placeholder="Eligibility" name="eligibility">
+  <button class="add-button" (click)="addCriteria()">Submit</button>
+</div>
+</div>
+
+<div *ngIf="successMessage" class="alert alert-success">
+{{ successMessage }}
+</div>
+
+
+<footer class="page-footer">
+  <div class="footer-content">
+    <p>Thank you for visiting!</p>
+    <p>Contact us at:<br>Email <a href="mailto:contact@example.com">contact@example.com</a></p>
+    <p>Phone: 9988998898</p>
+  </div>
+</footer>
+<router-outlet></router-outlet>

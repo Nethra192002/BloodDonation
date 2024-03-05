@@ -1,0 +1,74 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  </head>
+<nav class="navbar">
+    <a routerLink="/welcome">Home</a>
+    <a routerLink="/blood-bank-info">Blood Banks</a>
+    <a routerLink="/find-donor">Find a Donor</a>
+    <a routerLink="/donor-info">List of Recipient</a>
+    <a routerLink="/register-donor">Register Yourself</a>
+    <a routerLink="/donation-info">Blood Donated</a>
+  </nav>
+<div class="banner-image">
+    <img src="assets/images/banner1.jpg" alt="Banner">
+</div>
+<div class="welcome-message">
+    <p>Want to be a Donor?<br>Register now!</p>
+  </div>
+<div class="condition-selection">
+    <label for="condition">Before you start, please check for Criteria to be a donor</label>
+    <select id="condition" [(ngModel)]="selectedCondition" (change)="onConditionSelect()" required>
+        <option value="">Do you have any of the following Conditions</option>
+        <ng-container *ngFor="let criteria of bloodDonationCriteria">
+        <option [value]="criteria.Conditions">{{ criteria.Conditions }}</option>
+        </ng-container>
+    </select>
+</div>  
+
+<div *ngIf="!isEligible" class="error-message">{{ errorMessage }}</div>
+
+<div *ngIf="isEligible">
+    <div class="register-donor-container">
+        <h2>Register as a Donor</h2>
+        <form (ngSubmit)="registerDonor()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" [(ngModel)]="donor.name" name="name" required>
+        
+            <label for="age">Age:</label>
+            <input type="number" id="age" [(ngModel)]="donor.age" name="age" required>
+        
+            <label for="gender">Gender:</label>
+            <select id="gender" [(ngModel)]="donor.gender" name="gender" required>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+            </select>
+        
+            <label for="bloodgroup">Blood Group:</label>
+            <input type="text" id="bloodgroup" [(ngModel)]="donor.bloodgroup" name="bloodgroup" required>
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" [(ngModel)]="donor.email" name="email" required>
+        
+            <label for="password">Password:</label>
+            <input type="password" id="password" [(ngModel)]="donor.password" name="password" required>
+        
+            <label for="pincode">Pincode:</label>
+            <input type="text" id="pincode" [(ngModel)]="donor.pincode" name="pincode" required>
+        
+            <button type="submit">Register</button>
+            <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+            <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+        </form>
+    </div>
+</div>
+
+<footer class="page-footer">
+    <div class="footer-content">
+      <p>Thank you for visiting!</p>
+      <p>Contact us at:<br>Email <a href="mailto:contact@example.com">contact@example.com</a></p>
+      <p>Phone: 9988998898</p>
+    </div>
+  </footer>
+  <router-outlet></router-outlet>
+  

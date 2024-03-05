@@ -1,0 +1,89 @@
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<nav class="navbar">
+    <a routerLink="/admin-welcome">Home</a>
+    <a routerLink="/blood-banks">Blood Banks</a>
+    <a routerLink="/check-donor">Check Donors</a>
+    <a routerLink="/list-recipients">List of Recipients</a>
+    <a routerLink="/add-conditions">Add Conditions</a>
+    <a routerLink="/blood-donated">Blood Donated</a>
+  </nav>
+  <div class="banner-image">
+
+    <img src="assets/images/banner1.jpg" alt="Banner">
+  </div>
+
+  <div class="welcome-message">
+    <p>Manage Blood Banks</p>
+  </div>
+
+  <div class="filter-section">
+    <div class="filter-question">
+      <label for="filterPincode">Would you like to filter by pincode?</label>
+    </div>
+    <input class="filter-input" type="text" id="filterPincode" [(ngModel)]="filterPincode" placeholder="Enter pincode">
+    <button class="filter-button" (click)="fetchFilteredBloodBankInfo()">Filter</button>
+    <button class="filter-button" (click)="clearFilters()">Clear Filters</button>
+  </div>
+    
+      
+    <div class="min-height-container">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>State</th>
+              <th>Pincode</th>
+              <th>Deletion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bank of bloodBanks">
+              <td>{{ bank.bbank_id }}</td>
+              <td>{{ bank.bbank_name }}</td>
+              <td>{{ bank.address }}</td>
+              <td>{{ bank.state }}</td>
+              <td>{{ bank.pincode }}</td>
+              <td style="width: 90px;">
+                <button class="del-button" (click)="deleteBloodBank(bank.bbank_id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+
+<div class="add-bank-container">
+  <button class="add-button" (click)="toggleAddForm()">Modify Blood Banks</button>
+
+
+  <div [ngClass]="{'show': showAddForm}" class="add-bank-form">
+    <h3>Add a new Blood Bank</h3>
+    <input [(ngModel)]="newBank.bbank_id" placeholder="Bank ID" name="bbank_id">
+    <input [(ngModel)]="newBank.bbank_name" placeholder="Bank Name" name="bbank_name">
+    <input [(ngModel)]="newBank.address" placeholder="Address" name="address">
+    <input [(ngModel)]="newBank.state" placeholder="State" name="state">
+    <input [(ngModel)]="newBank.pincode" placeholder="Pincode" name="pincode">
+    <button class="add-button" (click)="addBloodBank()">Submit</button>
+  </div>
+</div>
+
+<div *ngIf="successMessage" class="alert alert-success">
+  {{ successMessage }}
+</div>
+
+
+<footer class="page-footer">
+  <div class="footer-content">
+    <p>Thank you for visiting!</p>
+    <p>Contact us at:<br>Email <a href="mailto:contact@example.com">contact@example.com</a></p>
+    <p>Phone: 9988998898</p>
+  </div>
+</footer>
+<router-outlet></router-outlet>
+  

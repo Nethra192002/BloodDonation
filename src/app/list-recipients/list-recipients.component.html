@@ -1,0 +1,70 @@
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<nav class="navbar">
+    <a routerLink="/admin-welcome">Home</a>
+    <a routerLink="/blood-banks">Blood Banks</a>
+    <a routerLink="/check-donor">Check Donors</a>
+    <a routerLink="/list-recipients">List of Recipients</a>
+    <a routerLink="/add-conditions">Add Conditions</a>
+    <a routerLink="/blood-donated">Blood Donated</a>
+  </nav>
+  <div class="banner-image">
+    <!-- Placeholder for banner image -->
+    <img src="assets/images/banner1.jpg" alt="Banner">
+  </div>
+  <div class="welcome-message">
+    <p>Manage Recipients</p>
+  </div>
+  <div class="min-height-container">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Patient ID</th>
+            <th>Patient Name</th>
+            <th>Blood Group</th>
+            <th>Age</th>
+            <th>Contact</th>
+            <th>Deletion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let patient of patients">
+            <td>{{ patient.p_id }}</td>
+            <td>{{ patient.pname }}</td>
+            <td>{{ patient.blood_group }}</td>
+            <td>{{ patient.age }}</td>
+            <td>{{ patient.contact }}</td>
+            <td style="width: 90px;"><button class="del-button" (click)="deletePatient(patient.p_id)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="add-patient-container">
+    <button class="add-button" (click)="toggleAddForm()">Add Recipient</button>
+
+    <div [class.show]="showAddForm" class="add-patient-form">
+      <h3>Add a new Recipient</h3>
+      <input [(ngModel)]="newPatient.p_id" placeholder="Patient ID" name="p_id">
+      <input [(ngModel)]="newPatient.pname" placeholder="Patient Name" name="pname">
+      <input [(ngModel)]="newPatient.blood_group" placeholder="Blood Group" name="blood_group">
+      <input type="number" [(ngModel)]="newPatient.age" placeholder="Age" name="age">
+      <input type="text" [(ngModel)]="newPatient.contact" placeholder="Contact" name="contact">
+      <button  class="add-button" (click)="addPatient()">Submit</button>
+    </div>
+    
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+    <footer class="page-footer">
+      <div class="footer-content">
+        <p>Thank you for visiting!</p>
+        <p>Contact us at:<br>Email <a href="mailto:contact@example.com">contact@example.com</a></p>
+        <p>Phone: 9988998898</p>
+      </div>
+    </footer>
+  <router-outlet></router-outlet>
+  
